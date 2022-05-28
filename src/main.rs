@@ -11,9 +11,12 @@ use piston_window::*;
 use draw::to_coord_u32;
 use game::Game;
 
+use color_eyre::eyre;
+
 const BACK_COLOR: Color = [0.5, 0.5, 0.5, 1.0];
 
-fn main() {
+fn main() -> eyre::Result<()> {
+	color_eyre::install()?;
 	let (width, height) = (30, 30);
 
 	let mut window: PistonWindow =
@@ -35,4 +38,6 @@ fn main() {
 			game.update(arg.dt);
 		});
 	}
+
+	Ok(())
 }
